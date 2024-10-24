@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 card mb-4  mt-3 left  top">
+      <div class="card-body">
+
+           <h2>Nom: {{ product.name }}</h2>
+          <h1> Prix: {{ product.price }}$</h1>
+          <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width:250px"><br>
+          <h2>Stock:{{ product.stock }}</h2>
+        <p class="card-text "><h2>Description:</h2><br> {{ product.description }}</p>
+        {% if user.is_authenticated %}
+            <p>
+                <a href="{% url 'add_to_card' product.slug %}">Ajouter dans le panier</a>
+            </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

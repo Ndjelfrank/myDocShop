@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h1>Connexion</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" autocomplete="off">
+    </p>
+
+    <p>
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" name="password" autocomplete="off">
+    </p>
+    <a href="#">mot de passe oublié</a><br>
+
+    <button type="submit">Se connecter</button><br>
+    <p>vous n'avez pas encore de compte? <a href="{% url 'signup' %}">Creer un compte</a></p>
+
+</form>
+
+{% endblock %}

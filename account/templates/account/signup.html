@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h1>S'inscrire</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <p>
+        {% if messages %}
+            {% for message in messages %}
+                 {{ message }}
+            {% endfor %}
+        {% endif  %}
+    </p>
+
+    <p>
+        <label for="username">Nom d'utilisateur</label>
+        <input id="username" type="text" name="username" autocomplete="off">
+    </p>
+
+    <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" autocomplete="off">
+    </p>
+
+    <p>
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" name="password" autocomplete="off">
+    </p>
+
+    <button type="submit">S'inscrire</button><br>
+    <p>vous avez deja un compte? <a href="{% url 'login' %}">Se connecter</a></p>
+
+</form>
+
+{% endblock %}

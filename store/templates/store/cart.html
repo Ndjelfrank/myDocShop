@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for order in orders %}
+        <h2>Nom: {{ order.product.name }}</h2>
+          <h1> Prix: {{ order.product.price }}$</h1>
+          <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }}" style="max-width:250px"><br>
+
+        <p class="card-text ">{{ order.quantity }} dans le panier</p>
+
+
+{% endfor %}
+
+{% endblock %}

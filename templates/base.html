@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>La boutique de Frank</title>
+
+</head>
+
+<body>
+<h1><a href="{% url 'index' %}">La boutique de Frank</a></h1>
+
+{% if user.is_authenticated %}
+    Bienvenu {{ user.username }}
+    <a href="{% url 'logout' %}">Déconnecter</a>
+{%  else %}
+    <a href="{% url 'login' %}">Connexion</a>
+    <a href="{% url 'signup' %}">S'incrire</a>
+{% endif %}
+
+{% if user.cart %}
+<p><a href="{% url 'cart' %}">Voir le panier ( {{ user.cart.orders.count }})</a></p>
+{% endif %}
+
+
+{% block content %}
+
+{% endblock  %}
+
+</body>
+</html>
