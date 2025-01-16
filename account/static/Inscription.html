@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <form action="" name="fo">
+        <h4>Inscription</h4>
+        <hr>
+        <div class="fullname">
+           <div>
+                <label for="Nom">Nom</label>
+                <input type="text" name="nom" id="nom">
+           </div>
+           <div>
+                <label for="Prenom">Prenom</label>
+                <input type="text" name="prenom" id="prenom">
+            </div>
+        </div>
+        <label for="mail">Adresse mail</label>
+        <input type="email" name="mail" id="mail">
+        <div class="passwordViews">
+            <div>
+                <label for="mot de passe">Mot de passe</label>
+                <input type="password" name="mdp" id="mdp">
+    
+            </div>
+            <div>
+                <span><input type="checkbox" name="check" id="check"> <p>Voir le mot de passe</p></span>
+            </div>
+            
+        </div>
+        <input type="submit" value="S'inscrire" name="inscrire" id="inscrire" class="btnn" onclick="toi()">
+        
+
+        <p>Vous avez deja un compte? <a href="#">Se Connecter</a></p>
+
+
+    </form>
+    <script>
+       document
+         .getElementById("check")
+         .addEventListener("change" , function
+         (){
+            var passwordInput = document.getElementById("mdp");
+            if(this.checked){
+                passwordInput.type = "text";
+            }else{
+                passwordInput.type = "password";
+            }
+         });
+
+         var btn=document.getElementById("inscrire")
+         
+         function toi(){
+            //var nm = document.getElementById("nom");
+            var nom = document.fo.nom.values
+            var prenom = document.getElementById("prenom");
+            var email = document.getElementById("email");
+            var mdp = document.getElementById("mdp");
+
+            alert("bonjour " + nom + prenom + " votre adresse mail est "
+             + email + " et votre mot de passe est " + mdp);
+         }
+         
+
+        
+    </script>
+</body>
+
+</html>

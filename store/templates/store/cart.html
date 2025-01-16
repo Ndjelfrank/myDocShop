@@ -9,7 +9,12 @@
 
         <p class="card-text ">{{ order.quantity }} dans le panier</p>
 
+        <p class="card-text "><a href="{% url 'delete_order' order.product.slug %}">retirer du panier </a></p>
+
+{% empty %}
+            <p>Aucun produit dans le panier.</p>
 
 {% endfor %}
 
+<p><a href="{% url 'delete_cart' %}">supprimer le panier</a></p>
 {% endblock %}

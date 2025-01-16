@@ -4,24 +4,59 @@
 
 {% block content %}
 
-<h1>Connexion</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    <p>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" autocomplete="off">
-    </p>
 
-    <p>
-        <label for="password">Mot de passe</label>
-        <input id="password" type="password" name="password" autocomplete="off">
-    </p>
-    <a href="#">mot de passe oublié</a><br>
 
-    <button type="submit">Se connecter</button><br>
-    <p>vous n'avez pas encore de compte? <a href="{% url 'signup' %}">Creer un compte</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h1 class="text-center text-muted mb-3 mt-5">Please sign in</h1>
+            <p class="text-center text-muted mb-4">Your articles are waiting for you.</p>
 
-</form>
+            <form action="" method="POST" id="form-login">
+                {% csrf_token %}
+
+<!--               -->
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control mb-3 " value="" autocomplete="email" autofocus required>
+                    <small class="text-danger fw-bold" id="error-login-email"></small>
+
+                </div>
+
+                <div class="col-md-12">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" name="password" id="password" class="form-control mb-3 "  autocomplete="current-password" autofocus required>
+                    <small class="text-danger fw-bold" id="error-login-password"></small>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" role="switch" id="remember" name="remember"   >
+                            <label for="remember" class="form-check-label">Remember me</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 text-right">
+                        <a href="#">Mot de passe oublié?</a>
+                    </div>
+
+
+                </div>
+
+                <div class="d-grid ga-2">
+                    <button type="submit" class="btn btn-primary" id="login-user">Se connecter</button>
+                </div>
+
+                <p class="text-center text-muted mt-5">Pas encore inscrit ?<a href="{% url 'signup' %}">S'inscrire</a></p>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}

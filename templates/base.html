@@ -1,30 +1,430 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>La boutique de Frank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="apple-touch-icon" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick-theme.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'assets/img' %}">
 
 </head>
 
 <body>
-<h1><a href="{% url 'index' %}">La boutique de Frank</a></h1>
 
-{% if user.is_authenticated %}
-    Bienvenu {{ user.username }}
-    <a href="{% url 'logout' %}">Déconnecter</a>
-{%  else %}
-    <a href="{% url 'login' %}">Connexion</a>
-    <a href="{% url 'signup' %}">S'incrire</a>
-{% endif %}
+<!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-flex d-lg-block " id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2 "></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:ndjelfranck8@gmail.com">ndjelfranck8@gmail.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:690-30-15-88">690-30-15-88</a>
+                </div>
+                <div>
+                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+                </div>
+                <div class="d-flex">
+                        {% if user.is_authenticated %}
 
-{% if user.cart %}
-<p><a href="{% url 'cart' %}">Voir le panier ( {{ user.cart.orders.count }})</a></p>
-{% endif %}
+                                <span>
+                       Bienvenu {{ user.username }}
+                    </span>
+                    <a class="nav-icon position-relative text-decoration-none " href="{% url 'logout' %}">
+                        <i class="fa fa-fw fa-sign-out text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        Se deconnecter
+                    </a>
+                        {%  else %}
+                                <a class="btn btn-outline-secondary me-2 px-2 mx-2" href="{% url 'login' %}">Se connecter</a>
+                                <a class="btn btn-primary px-4" href="{% url 'signup' %}">S'incrire</a>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+<!--        -->
+<!--   <nav class="navbar navbar-expand-lg navbar-light shadow">-->
+<!--        <div class="container ">-->
+
+<!--            <a class="navbar-brand h1 align-self-center  me-5" href="{% url 'index' %}">-->
+<!--                La boutique de Frank-->
+<!--            </a>-->
+
+<!--            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+
+<!--            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">-->
+<!--                <div class="flex-fill">-->
+<!--                    <ul class="nav navbar-nav me-auto mb-2 mb-lg-0  w-50 d-flex justify-content-between">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="index.html">Home</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="about.html">About</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="shop.html">Shop</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="contact.html">Contact</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="navbar align-self-center d-flex">-->
+<!--                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fa fa-fw fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">-->
+<!--                        <i class="fa fa-fw fa-search text-dark mr-2"></i>-->
+<!--                    </a>-->
+<!--                    <a class="nav-icon position-relative text-decoration-none" href="#">-->
+<!--                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>-->
+<!--                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>-->
+<!--                    </a>-->
+<!--                    <a class="nav-icon position-relative text-decoration-none" href="#">-->
+<!--                        <i class="fa fa-fw fa-user text-dark mr-3"></i>-->
+<!--                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </nav>-->
 
 
-{% block content %}
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-sm-0  justify-content-between align-items-center">-->
+<!--                <div class="container mb-sm-0 ">-->
+<!--                  <a class="navbar-brand" href="">my app</a>-->
+<!--                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                    <span class="navbar-toggler-icon"></span>-->
+<!--                  </button>-->
+<!--                  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
 
-{% endblock  %}
+<!--                        <ul class="navbar-nav  me-auto mb-2 mb-lg-0  w-50 d-flex justify-content-between">-->
+<!--                            <li class="nav-item">-->
+<!--                              <a class="nav-link  " aria-current="page" href="">Home</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                              <a class="nav-link " aria-current="page" href="">About</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                              <a class="nav-link  " aria-current="page" href="">Shop</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                              <a class="nav-link " aria-current="page" href="">Contacts</a>-->
+<!--                            </li>-->
+
+<!--                        </ul>-->
+
+
+
+<!--                  </div>-->
+
+
+
+
+<!--                  &lt;!&ndash; Boutons Login et Sign Up &ndash;&gt;-->
+<!--                  <div class="d-flex   ">-->
+<!--                    <a class="nav-icon position-relative text-decoration-none align-self-center me-4" href="#">-->
+<!--                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>-->
+<!--                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>-->
+<!--                    </a>-->
+<!--                      <div class="d-sm-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3 ">-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fa fa-fw fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <a class="nav-icon align-self-center me-4 d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">-->
+<!--                        <i class="fa fa-fw fa-search text-dark mr-2"></i>-->
+<!--                    </a>-->
+
+
+<!--                        <div class="d-flex">-->
+<!--                            <a  class="btn btn-outline-secondary me-2 px-5 w-100  " href="">Login</a>-->
+<!--                        <a  class="btn btn-primary px-5 w-100 " href="">Sign Up</a>-->
+
+<!--                        </div>-->
+<!--                  </div>-->
+
+<!--                    <div class="d-lg-none flex-sm-fill mt-1 mb-4 col-7 col-sm-auto pr-3 mb-sm-0">-->
+<!--                        <div class="input-group">-->
+<!--                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fa fa-fw fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <a class="nav-icon d-lg-none d-sm-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">-->
+<!--                        <i class="fa fa-fw fa-search text-dark mr-2"></i>-->
+<!--                    </a>-->
+
+<!--                </div>-->
+<!--</nav>-->
+<!--    &lt;!&ndash; Close Header &ndash;&gt;-->
+
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow ">
+    <div class="container d-flex  justify-content-between align-items-center">
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Logo -->
+                <a class="navbar-brand h1 me-4 bg-dark text-light" href="{% url 'index' %}">
+                     <div>
+                         frank-shop
+                     </div>
+                </a>
+
+
+
+
+            <!-- Collapsible Navbar -->
+            <div class="collapse navbar-collapse w-lg-50 " id="navbarNavDropdown">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav mx-auto d-lg-flex   mb-2 mb-lg-0">
+                    <li class="nav-item me-3 ">
+                        <a class="nav-link px-3" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link px-3" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link px-3" href="#" >
+                            Shop
+                        </a>
+    <!--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+    <!--
+                       </ul>-->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+    <!--            &lt;!&ndash; Search & User Actions &ndash;&gt;-->
+    <!--            <div class=" d-flex d-md-flex d-lg-flex align-items-center ">-->
+    <!--                &lt;!&ndash; Search Icon &ndash;&gt;-->
+    <!--                <a class="nav-icon  d-sm-none d-md-inline d-lg-inline me-3  " href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">-->
+    <!--                    <i class="fa fa-fw fa-search text-dark"></i>-->
+    <!--                </a>-->
+
+    <!--                &lt;!&ndash; Search Input for Small Screens &ndash;&gt;-->
+    <!--                <div class="d-lg-none   flex-sm-fill mb-1 me-2 ">-->
+    <!--                    <div class="input-group">-->
+    <!--                        <input type="text" class="form-control  " id="inputMobileSearch" placeholder="Search ...">-->
+    <!--                        <button class="btn btn-outline-secondary">-->
+    <!--                            <i class="fa fa-fw fa-search"></i>-->
+    <!--                        </button>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+
+    <!--                &lt;!&ndash; Cart &ndash;&gt;-->
+    <!--                <a class="nav-icon position-relative text-decoration-none align-self-center  " href="{% url 'cart' %}">-->
+    <!--                    <i class="fa fa-fw fa-cart-arrow-down text-dark me-1"></i>-->
+    <!--                    {% if user.is_authenticated  %}-->
+    <!--                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark ">-->
+    <!--                            {{ user.cart.orders.count }}-->
+    <!--                        </span>-->
+    <!--                    {% endif %}-->
+    <!--                </a>-->
+    <!--                &lt;!&ndash; User Actions &ndash;&gt;-->
+    <!--                {% if user.is_authenticated %}-->
+    <!--                    <span class="me-2">{{ user.username }}</span>-->
+    <!--                    <a class="btn btn-outline-secondary  " href="{% url 'logout' %}">Se déconnecter</a>-->
+    <!--                {% else %}-->
+    <!--                    <a class="btn btn-outline-secondary btn-sm me-2 mr-5" href="{% url 'login' %}">Se connecter</a>-->
+    <!--                    <a class="btn btn-success btn-sm " href="{% url 'signup' %}">S'inscrire</a>-->
+    <!--                {% endif %}-->
+
+
+    <!--            </div>-->
+            <div class="  d-md-flex d-lg-flex align-items-center">
+                <a class="nav-icon  d-lg-inline me-1 me-lg-2 " href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark"></i>
+                </a>
+                <input type="text" placeholder="Rechercher..." class="form-control d-none d-inline-block w-100 me-2">
+                 <!-- Cart -->
+                    <a class="nav-icon position-relative text-decoration-none align-self-center me-1 me-lg-2 ms-lg-3" href="{% url 'cart' %}">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        {% if user.is_authenticated  %}
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark ">
+                                {{ user.cart.orders.count }}
+                            </span>
+                        {% endif %}
+                    </a>
+                    <!-- User Actions -->
+                    {% if user.is_authenticated %}
+                        <span class="me-2 ms-1 user">{{ user.username }}</span>
+                        <a class="btn btn-outline-secondary btn-sm deconnexion" href="{% url 'logout' %}">Deconnexion</a>
+                    {% else %}
+                        <a class="btn btn-outline-secondary btn-sm me-1 me-lg-0 ms-lg-3 connexion" href="{% url 'login' %}">Connexion</a>
+                        <a class="btn btn-primary btn-sm ms-lg-3   inscrire " href="{% url 'signup' %}">S'inscrire</a>
+                    {% endif %}
+            </div>
+
+
+
+    </div>
+</nav>
+
+    <!-- Header -->
+<!--<nav class=" navbar navbar-expand-lg bg-light py-3">-->
+<!--    <div class="container d-flex justify-content-between align-items-center">-->
+<!--        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#log" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                 <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <a href="#" class="navbar-brand">LOGO</a>-->
+
+<!--        <div class="collapse navbar-collapse" id="log">-->
+
+
+<!--            <ul class="navbar-nav  mb-2 mb-lg-0">-->
+<!--                <li class="nav-item"><a  href="#" class="px-3 text-dark text-decoration-none">Accueil</a></li>-->
+<!--                <li class="nav-item"><a href="#" class="px-3 text-dark text-decoration-none">Boutique</a></li>-->
+<!--                <li class="nav-item"><a href="#" class="px-3 text-dark text-decoration-none">Contact</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="d-lg-flex d-md-none w-100   flex-sm-fill mb-1 me-2 ">&ndash;&gt;-->
+<!--                    <div class="input-group">-->
+<!--                        <input type="text" class="form-control  " id="inputMobileSearch" placeholder="Search ...">-->
+<!--                        <button class="btn btn-outline-secondary">-->
+<!--                            <i class="fa fa-fw fa-search"></i>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        <div class="  d-md-flex d-lg-flex align-items-center">-->
+<!--            <a class="nav-icon d-sm-none  d-lg-none me-3" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">-->
+<!--                    <i class="fa fa-fw fa-search text-dark"></i>-->
+<!--            </a>-->
+<!--            <input type="text" placeholder="Rechercher..." class="form-control d-none d-inline-block w-100 me-2">-->
+<!--             &lt;!&ndash; Cart &ndash;&gt;-->
+<!--                <a class="nav-icon position-relative text-decoration-none align-self-center me-4" href="{% url 'cart' %}">-->
+<!--                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>-->
+<!--                    {% if user.is_authenticated  %}-->
+<!--                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark ">-->
+<!--                            {{ user.cart.orders.count }}-->
+<!--                        </span>-->
+<!--                    {% endif %}-->
+<!--                </a>-->
+<!--                &lt;!&ndash; User Actions &ndash;&gt;-->
+<!--                {% if user.is_authenticated %}-->
+<!--                    <span class="me-2">{{ user.username }}</span>-->
+<!--                    <a class="btn btn-outline-secondary " href="{% url 'logout' %}">Se déconnecter</a>-->
+<!--                {% else %}-->
+<!--                    <a class="btn btn-outline-secondary me-2" href="{% url 'login' %}">Se connecter</a>-->
+<!--                    <a class="btn btn-primary  d-lg-flex d-md-flex d-sm-none " href="{% url 'signup' %}">S'inscrire</a>-->
+<!--                {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+    <!-- Close Header -->
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'search' %}" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="item-name"  placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+<!--<h1><a href="{% url 'index' %}">La boutique de Frank</a></h1>-->
+
+<!--{% if user.is_authenticated %}-->
+<!--    Bienvenu {{ user.username }}-->
+<!--    <a href="{% url 'logout' %}">Déconnecter</a>-->
+<!--{%  else %}-->
+<!--    <a href="{% url 'login' %}">Connexion</a>-->
+<!--    <a href="{% url 'signup' %}">S'incrire</a>-->
+<!--{% endif %}-->
+
+<!--{% if user.cart and user.cart.orders.count > 0  %}-->
+<!--<p><a href="{% url 'cart' %}">Voir le panier ( {{ user.cart.orders.count }})</a></p>-->
+<!--{% endif %}-->
+
+
+    {% block content %}
+
+    {% endblock  %}
+
+
+
+    <!-- Start Script -->
+    <script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/templatemo.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var button = document.querySelector(".button") ;
+        var menu = document.querySelector(".menu") ;
+        button.onclick = function(){
+            button.classList.toggle('active')
+            menu.classList.toggle('active')
+        }
+
+        var item = document.getElementByName("item-name") ;
+    </script>
+
+<script src="{% static 'assets/js/user.js' %}"></script>
+    <!-- End Script -->
 
 </body>
 </html>

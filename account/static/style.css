@@ -1,0 +1,111 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif ;
+}
+body{
+    background-color: dodgerblue;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    height: 100vh;
+    
+}
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 7px;
+   
+    padding: 12px ;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.2);
+}
+h4{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 100px;
+}
+hr{
+    margin: 10px 0;
+    height: 1px;
+    width: 100%;
+    border: 1px;
+    background-color: #ccc;
+}
+.fullname{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+}
+.fullname div{
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+}
+label{
+    margin-bottom: 10px;
+}
+input{
+    margin-bottom: 6px;
+    padding: 6px;
+    height: 30px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+input:focus{
+    border: 1px solid dodgerblue;
+    
+}
+.passwordViews{
+    display: flex;
+    justify-content: center;
+}
+.passwordViews div{
+    display: flex;
+    flex-direction: column;
+}
+span{
+    margin-top: 29px;
+    display :flex ;
+    flex-direction:row;
+    width: 100%;
+    
+
+}
+input[type="checkbox"]{
+    width: 20px;
+    margin-left:12px ;
+    margin-right:12px ;
+    
+}
+input[type="submit"]{
+    margin-top: 8px;
+    padding: 6px;
+    background-color: dodgerblue;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid dodgerblue;
+    cursor: pointer;
+}
+input[type="submit"]:hover{
+    filter: contrast(295%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+p{
+    text-align: center;
+    margin: 6px 0;
+    justify-content: space-between;
+    font-size: 15px;
+}
+p a{
+    text-decoration: none;
+    color: dodgerblue;
+    font-size: 15px;
+}
+p a:hover{
+    text-decoration: underline;
+   
+}

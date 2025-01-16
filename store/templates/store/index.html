@@ -1,19 +1,202 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content %}
 
 
 
-{% for product in product %}
+<!-- Start Banner Hero -->
 
-    <h2>{{ product.name }} <br>{{ product.price }} $</h2>
+    <div id="template-mo-zay-hero-carousel" class="carousel slide carousel-multi-item" data-bs-ride="carousel   align-items-center justify-content-center ">
 
 
-    <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width:250px">
+            <div class="carousel-inner justify-content-center align-items-center  " role="listbox">
+                {% for element in elements %}
+                      {% if forloop.counter0 == 0 %}
+                            <div class="carousel-item active">
+                                <div class="container ">
+                                    <div class="row p-5 ">
+                                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last d-flex justify-content-center">
+                                            <img class="img-fluid" src="{{ element.picture.url }}" alt="" style="border-radius:80px">
+                                        </div>
+                                        <div class="col-lg-6 mb-0 d-flex align-items-center justify-content-center">
+                                            <div class="text-center align-self-center mt-2 ">
+                                                <h1 class="h1 text-success"><b>{{ element.title }}</b></h1>
+                                                <p>
+                                                   {{ element.description }}
+                                                </p>
+                                                <a class="btn btn-outline-light py-2 px-4 mt-3 bg-dark text-light" id="shop-now-button" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    <a href="{{ product.get_absolute_url }}">Voir les details</a>
 
-{% endfor  %}
+                      {% else  %}
+
+                            <div class="carousel-item d-flex, f-direction-column " >
+                                <div class="container "  >
+                                    <div class="row p-5 ">
+                                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                            <img class="img-fluid" src="{{ element.picture.url }}" alt="" style="border-radius:80px">
+                                        </div>
+                                        <div class="col-lg-6 mb-0 d-flex align-items-center justify-content-center">
+                                            <div class="text-center align-self-center mt-2 ">
+                                                <h1 class="h1 text-success"><b>{{ element.title }}</b></h1>
+                                                <p>
+                                                   {{ element.description }}
+                                                </p>
+                                                <a class="btn btn-outline-light py-2 px-4 mt-3 bg-dark text-light" id="shop-now-button" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                      {% endif %}
+                    {% endfor %}
+
+            </div>
+
+
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    <!-- End Banner Hero -->
+
+
+
+<!--  <div class="btn-group">-->
+<!--    <button type="button" class="btn btn-danger">Action</button>-->
+<!--    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--      <span class="visually-hidden">Toggle Dropdown</span>-->
+<!--    </button>-->
+<!--    <ul class="dropdown-menu">-->
+<!--      <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--      <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--      <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--      <li><hr class="dropdown-divider"></li>-->
+<!--      <li><a class="dropdown-item" href="#">Separated link</a></li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+
+
+<section class=" bg-light">
+    <div class="container py-5">
+        <!-- Titre et description -->
+        <div class="row text-center my-3  py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Nos catégories</h1>
+                <p>
+                    Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident.
+                </p>
+            </div>
+        </div>
+
+        <!-- Produits -->
+
+        <div class="row">
+            {% for category, products in category_product.items %}
+               {% if category.products.count > 0 %}
+                    <div class="display-header d-flex align-items-center justify-content-between text-uppercase my-5 mb-4">
+                        <h2 class="section-title text-uppercase text-secondary text-underline pr-3">{{ category.name }}</h2>
+                        <div class="btn-right ">
+                            {% if category.name == "Homme" %}
+                                <a href="{% url 'login' %}" class="d-inline-block  text-uppercase text-hover fw-bold" >View more</a>
+                            {% elif category.name == "Femme" %}
+                                <a href="{% url 'login' %}" class="d-inline-block  text-uppercase text-hover fw-bold" >View more</a>
+                            {% elif category.name == "Enfant" %}
+                                <a href="{% url 'login' %}" class="d-inline-block  text-uppercase text-hover fw-bold" >View more</a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="d-inline-block  text-uppercase text-hover fw-bold" >View more</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% for product in products %}
+
+                    <div class=" col-sm-6 col-md-4 col-lg-3 align-self-center mb-4 d-flex align-items-stretch">
+                        <div class="card product-wap rounded-2 h-50 " >
+                            <div class="card rounded-5">
+                                <!-- Image produit -->
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                                </a>
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <!-- Bouton voir produit -->
+                                        <li><a class="btn btn-success text-white mt-2" href="{{ product.get_absolute_url }}"><i class="far fa-eye"></i></a></li>
+                                        <!-- Bouton ajouter au panier  -->
+                                        {% if user.is_authenticated %}
+                                        <li><a class="btn btn-success text-white mt-2" href=""><i class="fas fa-cart-plus"></i></a></li>
+                                        {% else %}
+                                        <li><a class="btn btn-success text-white mt-2" href="{% url 'login' %}"><i class="fas fa-cart-plus"></i></a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Informations produit -->
+                            <div class="card-body text-center">
+                                <a href="{{ product.get_absolute_url }}" class="h2 text-decoration-none">{{ product.name }}</a>
+
+                                <p class="text-center mb-0">{{ product.price }} fcfa</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+
+               {% endif %}
+            {% endfor %}
+
+
+            <div class="align-self-right ">
+                <div class="col-md-3 offset-md-4">
+                   <ul class="pagination">
+                        {% if page_object.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="?page={{page_object.previous_page_number}}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        {% endif %}
+                        <li class="page-item active">
+                            <p class="page-link text-muted rounded-0 shadow-sm border-top-0 border-left-0 text-dark"> Page {{page_object.number}}
+                                of {{page_object.paginator.num_pages}}.
+                            </p>
+                        </li>
+                        {% if page_object.has_next %}
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="?page={{page_object.next_page_number}}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                   </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</section>
+
+{% include 'footer.html' %}
 
 {% endblock  %}

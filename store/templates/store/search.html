@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class=" bg-light">
+    <div class="container py-5">
+     <div class="row">
+         <div class="row text-center my-1  py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h2">{{message}} </h1>
+
+            </div>
+        </div>
+         {% for product in product %}
+         <div class=" col-sm-6 col-md-4 col-lg-3 align-self-center mb-4 d-flex align-items-stretch">
+                        <div class="card product-wap rounded-2 h-50 " >
+                            <div class="card rounded-5">
+                                <!-- Image produit -->
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                                </a>
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <!-- Bouton voir produit -->
+                                        <li><a class="btn btn-success text-white mt-2" href="{{ product.get_absolute_url }}"><i class="far fa-eye"></i></a></li>
+                                        <!-- Bouton ajouter au panier  -->
+                                        {% if user.is_authenticated %}
+                                        <li><a class="btn btn-success text-white mt-2" href=""><i class="fas fa-cart-plus"></i></a></li>
+                                        {% else %}
+                                        <li><a class="btn btn-success text-white mt-2" href="{% url 'login' %}"><i class="fas fa-cart-plus"></i></a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Informations produit -->
+                            <div class="card-body text-center">
+                                <a href="{{ product.get_absolute_url }}" class="h2 text-decoration-none">{{ product.name }}</a>
+
+                                <p class="text-center mb-0">{{ product.price }} fcfa</p>
+                            </div>
+                        </div>
+                    </div>
+         {% endfor %}
+     </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    {% include 'footer.html' %}
+</section>
+
+{% endblock content%}

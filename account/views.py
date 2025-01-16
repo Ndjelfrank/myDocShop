@@ -13,17 +13,7 @@ def signup(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        if username == '' and password == '' and email == '':
-            messages.error(request, 'entrer le nom d\'utilisateur , l\'email et le mot de passe ')
-        elif password == '':
-            messages.error(request, 'entrer le mot de passe ')
-        elif len(password) < 8:
-            messages.error(request, 'le mot de passe doit contenir au moin 8 caracteres')
-        elif username == '':
-            messages.error(request, 'entrer le nom d\'utilisateur ')
-        elif email == '':
-            messages.error(request, 'entrer votre l\'email')
-        elif Shopper.objects.filter(email=email).exists():
+        if Shopper.objects.filter(email=email).exists():
             messages.error(request, 'cet email est deja utilisé.')
         else:
             user = User.objects.create_user(username=username, password=password, email=email)

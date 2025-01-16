@@ -1,0 +1,27 @@
+{% load static %}
+
+
+{% block content %}
+
+<section class=" newsletter-section text-center py-5">
+    <h2>Inscrivez-vous à notre newsletter</h2>
+    <form class="d-flex justify-content-center mt-3">
+        <input type="email" class="form-control w-50" placeholder="Votre e-mail">
+        <button type="submit" class="btn btn-primary ms-2">S'inscrire</button>
+    </form>
+</section>
+
+<footer class="bg-dark text-light py-4">
+    <div class="container d-flex justify-content-between">
+        <div>
+            <p>© 2024 E-Commerce. Tous droits réservés.</p>
+            <a href="#" class="text-light text-decoration-none">Conditions générales</a>
+        </div>
+        <div>
+            <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}
